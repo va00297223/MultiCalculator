@@ -7,6 +7,7 @@ import androidx.activity.compose.setContent
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
@@ -28,7 +29,7 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
 
         setContent {
-            App()
+            CalcView()
         }
     }
 }
@@ -45,7 +46,7 @@ fun CalcView() {
 
     Column(modifier = Modifier
         .background(Color.LightGray)
-        .fillMaxWidth()
+        .fillMaxSize()
         .height(350.dp)){
         Row {
             CalcDisplay(display = displayText)
@@ -73,7 +74,8 @@ fun CalcView() {
 @Composable
 fun CalcRow(display: MutableState<String>, startNum: Int, numButtons: Int) {
     val endNum = startNum + numButtons
-    Row(modifier = Modifier.padding(0.dp)) {
+    Row(modifier = Modifier
+        .padding(0.dp)) {
         for (i in startNum until endNum) {
             CalcNumericButton(number = i, display = display)
         }
