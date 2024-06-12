@@ -101,3 +101,14 @@ fun CalcNumericButton(number: Int, display: MutableState<String>) {
         Text(text = number.toString(), fontSize = 20.sp)
     }
 }
+
+@Composable
+fun CalcOperationButton(operation: String, display: MutableState<String>) {
+    Button(
+        /* logic will be added here when button is pressed*/
+        onClick = {  },
+        modifier = Modifier.padding(4.dp)
+    ) {
+        Text(text = operation, fontSize = 20.sp)
+    }
+}
