@@ -112,3 +112,13 @@ fun CalcOperationButton(operation: String, display: MutableState<String>) {
         Text(text = operation, fontSize = 20.sp)
     }
 }
+
+@Composable
+fun CalcEqualsButton(display: MutableState<String>) {
+    Button(
+        onClick = { display.value = "0" },
+        modifier = Modifier.padding(4.dp)
+    ) {
+        Text(text = "=", fontSize = 20.sp)
+    }
+}
