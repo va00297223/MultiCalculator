@@ -118,7 +118,7 @@ fun CalcView() {
 }
 
 @Composable
-fun CalcRow(onPress: (Int) -> Unit, startNum: Int, numButtons: Int) {
+fun CalcRow() {
     val endNum = startNum + numButtons
     Row(modifier = Modifier
         .padding(0.dp)) {
