@@ -29,6 +29,12 @@ class MainActivity : ComponentActivity() {
 @Composable
 fun CalcView() {
     val displayText = remember { mutableStateOf("0") }
+    var leftNumber by rememberSaveable { mutableStateOf(0) }
+    var rightNumber by rememberSaveable { mutableStateOf(0) }
+    var operation by rememberSaveable { mutableStateOf("") }
+    var complete by rememberSaveable { mutableStateOf(false) }
+
+
 
     Column(modifier = Modifier
         .background(Color.LightGray)
