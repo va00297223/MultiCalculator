@@ -11,6 +11,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.material.Button
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
@@ -34,24 +35,19 @@ class MainActivity : ComponentActivity() {
     }
 }
 
-@Preview
-@Composable
-fun AppAndroidPreview() {
-    App()
-}
-
 @Composable
 fun CalcView() {
     val displayText = remember { mutableStateOf("0") }
 
     Column(modifier = Modifier
+        .padding(horizontal = 0.dp)
         .background(Color.LightGray)
         .fillMaxSize()
         .height(350.dp)){
         Row {
             CalcDisplay(display = displayText)
         }
-        Row {
+        Row(modifier = Modifier.fillMaxWidth()) {
             Column {
                 for (i in 7 downTo 1 step 3) {
                     CalcRow(display = displayText, startNum = i, numButtons = 3)
@@ -59,6 +55,7 @@ fun CalcView() {
                 Row {
                     CalcNumericButton(number = 0, display = displayText)
                     CalcEqualsButton(display = displayText)
+                    CalcClearButton(display = displayText)
                 }
             }
             Column {
@@ -87,10 +84,10 @@ fun CalcDisplay(display: MutableState<String>) {
     Text(
         text = display.value,
         modifier = Modifier
-            .height(50.dp)
-            .padding(5.dp)
+            .height(100.dp)
+            .padding(10.dp)
             .fillMaxWidth(),
-        fontSize = 24.sp
+        fontSize = 45.sp
     )
 }
 
@@ -98,9 +95,11 @@ fun CalcDisplay(display: MutableState<String>) {
 fun CalcNumericButton(number: Int, display: MutableState<String>) {
     Button(
         onClick = { display.value += number.toString() },
-        modifier = Modifier.padding(4.dp)
+        modifier = Modifier
+            .padding(5.dp)
+            .size(90.dp)
     ) {
-        Text(text = number.toString(), fontSize = 20.sp)
+        Text(text = number.toString(), fontSize = 35.sp)
     }
 }
 
@@ -109,9 +108,10 @@ fun CalcOperationButton(operation: String, display: MutableState<String>) {
     Button(
         /* logic will be added here when button is pressed*/
         onClick = {  },
-        modifier = Modifier.padding(4.dp)
+        modifier = Modifier.padding(5.dp)
+            .size(90.dp)
     ) {
-        Text(text = operation, fontSize = 20.sp)
+        Text(text = operation, fontSize = 35.sp)
     }
 }
 
@@ -119,8 +119,20 @@ fun CalcOperationButton(operation: String, display: MutableState<String>) {
 fun CalcEqualsButton(display: MutableState<String>) {
     Button(
         onClick = { display.value = "0" },
-        modifier = Modifier.padding(4.dp)
+        modifier = Modifier.padding(5.dp)
+            .size(90.dp)
     ) {
-        Text(text = "=", fontSize = 20.sp)
+        Text(text = "=", fontSize = 35.sp)
+    }
+}
+
+@Composable
+fun CalcClearButton(display: MutableState<String>) {
+    Button(
+        onClick = { display.value = "0" },
+        modifier = Modifier.padding(5.dp)
+            .size(90.dp)
+    ) {
+        Text(text = "C", fontSize = 35.sp)
     }
 }
