@@ -34,6 +34,27 @@ fun CalcView() {
     var operation by rememberSaveable { mutableStateOf("") }
     var complete by rememberSaveable { mutableStateOf(false) }
 
+    if (complete && operation.isNotEmpty()) {
+        var answer = 0
+
+        when (operation) {
+            "+" -> answer = leftNumber + rightNumber
+            "-" -> answer = leftNumber - rightNumber
+            "*" -> answer = leftNumber * rightNumber
+            "/" -> {
+                if (rightNumber != 0) {
+                    answer = leftNumber / rightNumber
+                } else {
+                }
+            }
+        }
+        displayText.value = answer.toString()
+
+    }else if (operation.isNotEmpty() && !complete) {
+        displayText.value = rightNumber.toString()
+    }else {
+        displayText.value = leftNumber.toString()
+    }
 
 
     Column(modifier = Modifier
