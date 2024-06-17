@@ -96,7 +96,8 @@ fun CalcView() {
         Row {
             CalcDisplay(display = displayText)
         }
-        Row(modifier = Modifier.fillMaxWidth()) {
+        Row(modifier = Modifier.fillMaxWidth()
+            .padding(horizontal = 5.dp)) {
             Column {
                 for (i in 7 downTo 1 step 3) {
                     CalcRow(onPress = { numberPress(it) }, startNum = i, numButtons = 3)
@@ -104,7 +105,7 @@ fun CalcView() {
                 Row {
                     CalcNumericButton(onPress = { numberPress(it) }, number = 0)
                     CalcEqualsButton(onPress = { equalsPress() })
-                    CalcClearButton(onPress = { numberPress(0) })
+                    //CalcClearButton(onPress = { numberPress(0) })
                 }
             }
             Column {
@@ -118,7 +119,7 @@ fun CalcView() {
 }
 
 @Composable
-fun CalcRow() {
+fun CalcRow(onPress: (Int) -> Unit, startNum: Int, numButtons: Int) {
     val endNum = startNum + numButtons
     Row(modifier = Modifier
         .padding(0.dp)) {
@@ -146,7 +147,7 @@ fun CalcNumericButton(onPress: (Int) -> Unit, number: Int) {
         onClick = { onPress(number) },
         modifier = Modifier
             .padding(5.dp)
-            .size(90.dp)
+            .size(85.dp)
     ) {
         Text(text = number.toString(), fontSize = 35.sp)
     }
@@ -159,7 +160,7 @@ fun CalcOperationButton(onPress: (String) -> Unit, operation: String) {
         onClick = { onPress(operation) },
         modifier = Modifier
             .padding(5.dp)
-            .size(90.dp)
+            .size(85.dp)
     ) {
         Text(text = operation, fontSize = 35.sp)
     }
@@ -170,19 +171,19 @@ fun CalcEqualsButton(onPress: ()-> Unit) {
     Button(
         onClick = { onPress() },
         modifier = Modifier.padding(5.dp)
-            .size(90.dp)
+            .size(85.dp)
     ) {
         Text(text = "=", fontSize = 35.sp)
     }
 }
 
-@Composable
+/*@Composable
 fun CalcClearButton(onPress: ()-> Unit) {
     Button(
         onClick = { onPress() },
         modifier = Modifier.padding(5.dp)
-            .size(90.dp)
+            .size(85.dp)
     ) {
         Text(text = "C", fontSize = 35.sp)
     }
-}
+}*/
