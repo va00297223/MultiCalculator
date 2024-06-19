@@ -34,7 +34,7 @@ fun CalcView() {
     var operation by rememberSaveable { mutableStateOf("") }
     var complete by rememberSaveable { mutableStateOf(false) }
 
-    if (complete && operation.isNotEmpty()) {
+    if (complete && operation.isNotEmpty()) {cd
         var answer = 0
 
         when (operation) {
